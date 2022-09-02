@@ -67,12 +67,41 @@ const displayNewsInCategory = (newsInCategory) => {
                }</span>
             </div>
                <div>
-                  <button  class = 'btn btn-primary me-4'>Details</button>
+                  <button onclick = 'loadNewsDetails("${
+                    news._id
+                  }")'  class ='btn btn-primary me-4' data-bs-toggle="modal" data-bs-target="#newsModal">Details</button>
+                 
                </div>
            </div>
         
     </div>`;
     newsCategoryInContainer.appendChild(newsInDiv);
   });
+};
+// loadNews Details
+const loadNewsDetails = (news_id) => {
+  console.log(news_id);
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => displayNewsDetails(data.data[0]));
+};
+const displayNewsDetails = (newsDetail) => {
+  console.log(newsDetail);
+  const modalTitle = document.getElementById("newsModalLabel");
+  modalTitle.innerText = newsDetail.author.name
+    ? newsDetail.author.name
+    : "No data found";
+  const newsDetailPart = document.getElementById("news-details");
+  newsDetailPart.innerHTML = `
+  <p>Published Date :${
+    newsDetail.author.published_date
+      ? newsDetail.author.published_date
+      : "No data found"
+  }</p>
+  <img style = 'width :20rem' src ='${newsDetail.author.img}'>
+  <p class = 'py-4'>total Views :${
+    newsDetail.total_view ? newsDetail.total_view : "No views Found"
+  }</p>`;
 };
 loadNewsCategory();
