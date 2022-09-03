@@ -2,7 +2,8 @@ const loadNewsCategory = () => {
   const url = "https://openapi.programming-hero.com/api/news/categories";
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayNewsCatogory(data.data.news_category));
+    .then((data) => displayNewsCatogory(data.data.news_category))
+    .catch((error) => console.log(error));
 };
 const displayNewsCatogory = (newsCategory) => {
   //   console.log(newsCategory);
@@ -30,12 +31,12 @@ const loadNewsInCategory = (category_id, category_name) => {
   //   console.log(category_id);
 
   const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
-
   toogleSpinner(true);
 
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayNewsInCategory(data.data, category_name));
+    .then((data) => displayNewsInCategory(data.data, category_name))
+    .catch((error) => console.log(error));
 };
 
 const displayNewsInCategory = (newsInCategory, category_name) => {
@@ -44,7 +45,7 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
   const totalNews = document.getElementById("total-news");
 
   if (newsInCategory.length === 0) {
-    totalNews.innerText = `No news found ${category_name}.Plesase search another one `;
+    totalNews.innerText = `No news found ${category_name}.Please search another one `;
   } else {
     totalNews.innerText = `${newsInCategory.length} items Found for ${category_name} `;
   }
@@ -110,7 +111,8 @@ const loadNewsDetails = (news_id) => {
   const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayNewsDetails(data.data[0]));
+    .then((data) => displayNewsDetails(data.data[0]))
+    .catch((error) => console.log(error));
 };
 
 const displayNewsDetails = (newsDetail) => {
