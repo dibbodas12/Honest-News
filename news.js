@@ -83,7 +83,7 @@ newsInDiv.innerHTML = `
 
       <div>
           <img class = 'rounded-pill' style = "width: 5rem" src = '${news.author.img}'>
-          <span class="card-title fw-semibold">${news.author.name}</span>
+          <span class="card-title fw-semibold">${news.author.name ? news.author.name : 'No data found'}</span>
       </div>
 
       <div>
@@ -92,7 +92,7 @@ newsInDiv.innerHTML = `
       </div>
 
       <div>
-           <button onclick = 'loadNewsDetails("${news._id }")'  class ='btn btn-primary me-4' data-bs-toggle="modal" data-bs-target="#newsModal">Details</button>          
+           <button onclick = 'loadNewsDetails("${news._id }")'  class ='btn btn-primary me-4 me-sm-0 ' data-bs-toggle="modal" data-bs-target="#newsModal">Details</button>          
       </div>
 
   </div>
