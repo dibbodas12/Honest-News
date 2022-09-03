@@ -28,6 +28,9 @@ const displayNewsCatogory = (newsCategory) => {
 
 const loadNewsInCategory = (category_id, category_name) => {
   //   console.log(category_id);
+
+  toogleSpinner(true);
+
   const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
   fetch(url)
     .then((res) => res.json())
@@ -62,7 +65,7 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
     </div>
     <div class="col-md-8">
             <h5 class="card-title">${news.title}</h5>
-            <p class="card-text">${news.details.slice(0, 400)}</p>
+            <p class="card-text">${news.details.slice(0, 200)}</p>
             <div class = 'd-flex justify-content-between align-items-center'>
 
             <div>
@@ -88,21 +91,21 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
     </div>`;
     newsCategoryInContainer.appendChild(newsInDiv);
   });
+  toogleSpinner(false);
 };
-
-// const toogleSpinner = (isLoading) => {
-//   const loader = document.getElementById("spinner");
-//   if (isLoading) {
-//     loader.classList.remove("d-none");
-//   } else {
-//     loader.classList.add("d-none");
-//   }
-// };
+// spinner
+const toogleSpinner = (isLoading) => {
+  const loader = document.getElementById("spinner");
+  if (isLoading) {
+    loader.classList.remove("d-none");
+  } else {
+    loader.classList.add("d-none");
+  }
+};
 
 // loadNews Details
 
 const loadNewsDetails = (news_id) => {
-  //   console.log(news_id);
   const url = `https://openapi.programming-hero.com/api/news/${news_id}`
 
     .then((res) => res.json())
