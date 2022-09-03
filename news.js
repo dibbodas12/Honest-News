@@ -16,7 +16,7 @@ const displayNewsCatogory = (newsCategory) => {
     newsDiv.innerHTML = `
     <ul class="nav justify-content-center fs-5">
        <li class="nav-item">
-          <a onclick = 'loadNewsInCategory("${news.category_id}")' class="nav-link" href="#">${news.category_name} 
+          <a onclick = 'loadNewsInCategory("${news.category_id}", "${news.category_name}")' class="nav-link" href="#">${news.category_name} 
           </a>
        </li>
     </ul>
@@ -25,19 +25,30 @@ const displayNewsCatogory = (newsCategory) => {
     newsCategoryContainer.appendChild(newsDiv);
   });
 };
-const loadNewsInCategory = (category_id) => {
+
+const loadNewsInCategory = (category_id, category_name) => {
   //   console.log(category_id);
   const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
   fetch(url)
     .then((res) => res.json())
-    .then((data) => displayNewsInCategory(data.data));
+    .then((data) => displayNewsInCategory(data.data, category_name));
 };
-const displayNewsInCategory = (newsInCategory) => {
-  console.log(newsInCategory);
+
+const displayNewsInCategory = (newsInCategory, category_name) => {
+  console.log(newsInCategory.length);
+
+  const totalNews = document.getElementById("total-news");
+
+  if (newsInCategory.length === 0) {
+    totalNews.innerText = `No news found ${category_name}.Plesase search another one `;
+  } else {
+    totalNews.innerText = `${newsInCategory.length} items Found for ${category_name} `;
+  }
 
   const newsCategoryInContainer = document.getElementById(
     "newsCategoryIn-container"
   );
+
   newsCategoryInContainer.innerHTML = "";
   newsInCategory.forEach((news) => {
     console.log(news);
@@ -78,14 +89,27 @@ const displayNewsInCategory = (newsInCategory) => {
     newsCategoryInContainer.appendChild(newsInDiv);
   });
 };
+
+// const toogleSpinner = (isLoading) => {
+//   const loader = document.getElementById("spinner");
+//   if (isLoading) {
+//     loader.classList.remove("d-none");
+//   } else {
+//     loader.classList.add("d-none");
+//   }
+// };
+
 // loadNews Details
+
 const loadNewsDetails = (news_id) => {
-  console.log(news_id);
-  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
-  fetch(url)
+  //   console.log(news_id);
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`
+
     .then((res) => res.json())
     .then((data) => displayNewsDetails(data.data[0]));
+  fetch(url);
 };
+
 const displayNewsDetails = (newsDetail) => {
   console.log(newsDetail);
   const modalTitle = document.getElementById("newsModalLabel");
@@ -104,4 +128,5 @@ const displayNewsDetails = (newsDetail) => {
     newsDetail.total_view ? newsDetail.total_view : "No views Found"
   }</p>`;
 };
+
 loadNewsCategory();
