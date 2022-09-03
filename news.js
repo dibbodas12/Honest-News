@@ -44,6 +44,15 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
 
   const totalNews = document.getElementById("total-news");
 
+  // sorting added
+  newsInCategory.sort((firstVal, secondVal) => {
+    if (firstVal.total_view < secondVal.total_view) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
+  // show news found
   if (newsInCategory.length === 0) {
     totalNews.innerText = `No news found ${category_name}.Please search another one `;
   } else {
@@ -67,7 +76,7 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
     </div>
     <div class="col-md-8">
             <h5 class="card-title">${news.title}</h5>
-            <p class="card-text">${news.details.slice(0, 200)}</p>
+            <p class="card-text">${news.details.slice(0, 300)}</p>
             <div class = 'd-flex justify-content-between align-items-center'>
 
             <div>
@@ -128,7 +137,7 @@ const displayNewsDetails = (newsDetail) => {
       ? newsDetail.author.published_date
       : "No data found"
   }</p>
-  <img style = 'width :20rem' src ='${newsDetail.author.img}'>
+  <img style = 'width :15rem' src ='${newsDetail.author.img}'>
   <p class = 'py-4'>total Views :${
     newsDetail.total_view ? newsDetail.total_view : "No views Found"
   }</p>`;
