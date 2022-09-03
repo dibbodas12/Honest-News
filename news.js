@@ -29,9 +29,10 @@ const displayNewsCatogory = (newsCategory) => {
 const loadNewsInCategory = (category_id, category_name) => {
   //   console.log(category_id);
 
+  const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
+
   toogleSpinner(true);
 
-  const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
   fetch(url)
     .then((res) => res.json())
     .then((data) => displayNewsInCategory(data.data, category_name));
@@ -106,11 +107,10 @@ const toogleSpinner = (isLoading) => {
 // loadNews Details
 
 const loadNewsDetails = (news_id) => {
-  const url = `https://openapi.programming-hero.com/api/news/${news_id}`
-
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+  fetch(url)
     .then((res) => res.json())
     .then((data) => displayNewsDetails(data.data[0]));
-  fetch(url);
 };
 
 const displayNewsDetails = (newsDetail) => {
