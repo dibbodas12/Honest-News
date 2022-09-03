@@ -16,66 +16,50 @@
 
 <body>
     <header>
-        <!-- <nav class="navbar navbar-dark navbar-expand-lg bg-light">
-            <div class="container-fluid d-flex justify-content-around">
-                <div>
-                    <a class="navbar-brand rounded fs-4" href="#">Honesty</a><span>News</span>
-                </div>
-                <div class="navbar-nav">
-                    <a class="nav-link fw-bold" href="#">Home</a>
-                    <a class="nav-link fw-bold" href="blog.html">Blog</a>
-                </div>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-
-            </div>
-        </nav> -->
-
-
+        <!-- navbar starts from here -->
         <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
+            <div class="container justify-content-between">
+                <a class="navbar-brand fw-semibold" href="#">Honesty News</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav ms-auto ">
+
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link fs-5 fw-semibold " href="#">News</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled">Disabled</a>
+                            <a class="nav-link fs-5 fw-semibold" href="blog.html">Blog</a>
                         </li>
                     </ul>
-                    <form class="d-flex" role="search">
-                        <a class="nav-link fw-bold" href="#">Home</a>
-                        <a type="submit" href="blog.html">Blog</a>
-                    </form>
+
                 </div>
             </div>
         </nav>
+        <!-- navbar ends here -->
     </header>
     <main>
+        <!-- news category container starts here -->
         <section>
-            <div id="news-category-container" class="container d-flex flex-md-row flex-sm-column mt-3">
+            <div id="news-category-container" class="container d-flex flex-column flex-md-row align-items-center mt-3">
             </div>
         </section>
+        <!-- news category container ends here -->
+
         <section>
             <div class="text-center pt-4 fs-3" id="total-news"></div>
         </section>
+
         <section class="mt-5">
-            <div id="newsCategoryIn-container" class="mb-3 mx-auto" style="max-width: 900px;">
+            <div id="newsCategoryIn-container" class="container mb-3 mx-auto">
+
 
             </div>
         </section>
-        <!-- spinner -->
+        <!-- spinner starts here -->
         <section id="spinner" class="d-none">
             <div style="height: 300px;" class="d-flex justify-content-center align-items-center">
                 <div class="spinner-border text-success" role="status">
@@ -83,6 +67,9 @@
                 </div>
             </div>
         </section>
+        <!-- spinner ends here  -->
+
+
         <!-- modal -->
         <section>
             <!-- Modal -->

@@ -5,8 +5,8 @@ const loadNewsCategory = () => {
     .then((data) => displayNewsCatogory(data.data.news_category))
     .catch((error) => console.log(error));
 };
+
 const displayNewsCatogory = (newsCategory) => {
-  //   console.log(newsCategory);
   const newsCategoryContainer = document.getElementById(
     "news-category-container"
   );
@@ -44,7 +44,7 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
 
   const totalNews = document.getElementById("total-news");
 
-  // sorting added
+  // sorting starts here
   newsInCategory.sort((firstVal, secondVal) => {
     if (firstVal.total_view < secondVal.total_view) {
       return 1;
@@ -52,12 +52,15 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
       return -1;
     }
   });
-  // show news found
+  // sorting ends here
+
+  // total news found starts here
   if (newsInCategory.length === 0) {
     totalNews.innerText = `No news found ${category_name}.Please search another one `;
   } else {
     totalNews.innerText = `${newsInCategory.length} items Found for ${category_name} `;
   }
+  // /total news found ends here
 
   const newsCategoryInContainer = document.getElementById(
     "newsCategoryIn-container"
@@ -72,11 +75,12 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
     <div class="col-md-4">
         <img src="${
           news.thumbnail_url
-        }" class="img-fluid rounded-start" alt="...">
+        }" class="img-fluid rounded-start mb-4" alt="...">
     </div>
+    
     <div class="col-md-8">
-            <h5 class="card-title">${news.title}</h5>
-            <p class="card-text">${news.details.slice(0, 300)}</p>
+            <h5 class="card-title mb-2 ">${news.title}</h5>
+            <p class="card-text py-2">${news.details.slice(0, 300)}...</p>
             <div class = 'd-flex justify-content-between align-items-center'>
 
             <div>
@@ -99,7 +103,8 @@ const displayNewsInCategory = (newsInCategory, category_name) => {
                </div>
            </div>
         
-    </div>`;
+    </div>
+    <hr>`;
     newsCategoryInContainer.appendChild(newsInDiv);
   });
   toogleSpinner(false);
